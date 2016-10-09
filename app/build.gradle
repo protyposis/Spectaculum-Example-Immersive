@@ -28,4 +28,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'net.protyposis.android.spectaculum:spectaculum:1.1.0'
     compile 'net.protyposis.android.spectaculum:spectaculum-effect-immersive:1.1.0'
+    compile 'com.google.android.exoplayer:exoplayer:r2.0.2'
 }
