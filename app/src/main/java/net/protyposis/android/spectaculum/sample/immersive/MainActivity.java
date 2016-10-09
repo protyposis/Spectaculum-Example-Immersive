@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -128,6 +129,9 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
             public void onRenderedFirstFrame() {
                 // Hide loading indicator when video is ready for playback
                 findViewById(R.id.loadingindicator).setVisibility(View.GONE);
+
+                // Inform user that he can look around in the video
+                Toast.makeText(MainActivity.this, R.string.drag, Toast.LENGTH_LONG).show();
             }
 
             @Override
