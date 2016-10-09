@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         //mVideoUri = "https://360.littlstar.com/production/83ef40fe-6e8e-45ed-86f8-871c89c3a60f/download.mp4";
 
         // House Stereo Side-By-Side Demo
-        mVideoUri = "http://hosting.360heros.com/3D360Video/3D360/Demo3-House/3DH-Take1-Side-By-Side-1920x960.mp4";
-        immersiveEffect.setMode(ImmersiveEffect.Mode.STEREO_SBS);
+        //mVideoUri = "http://hosting.360heros.com/3D360Video/3D360/Demo3-House/3DH-Take1-Side-By-Side-1920x960.mp4";
+        //immersiveEffect.setMode(ImmersiveEffect.Mode.STEREO_SBS);
     }
 
     @Override
