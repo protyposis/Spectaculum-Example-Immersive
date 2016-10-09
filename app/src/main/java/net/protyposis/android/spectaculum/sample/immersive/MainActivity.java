@@ -1,4 +1,4 @@
-package immersive.sample.spectaculum.android.protyposis.net.spectaculumimmersivesample;
+package net.protyposis.android.spectaculum.sample.immersive;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,3 +11,4 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 }
+

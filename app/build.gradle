@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
-        applicationId "immersive.sample.spectaculum.android.protyposis.net.spectaculumimmersivesample"
+        applicationId "net.protyposis.android.spectaculum.sample.immersive"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1

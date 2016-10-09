@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="immersive.sample.spectaculum.android.protyposis.net.spectaculumimmersivesample">
+    package="net.protyposis.android.spectaculum.sample.immersive">
 
     <application
         android:allowBackup="true"

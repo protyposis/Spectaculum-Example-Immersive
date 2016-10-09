@@ -1,4 +1,4 @@
-package immersive.sample.spectaculum.android.protyposis.net.spectaculumimmersivesample;
+package net.protyposis.android.spectaculum.sample.immersive;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
