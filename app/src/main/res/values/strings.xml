@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Spectaculum Immersive Sample</string>
+    <string name="loading">Loading video...</string>
 </resources>

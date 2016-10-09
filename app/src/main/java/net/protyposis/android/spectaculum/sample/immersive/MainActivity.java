@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -125,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
 
             @Override
             public void onRenderedFirstFrame() {
+                // Hide loading indicator when video is ready for playback
+                findViewById(R.id.loadingindicator).setVisibility(View.GONE);
             }
 
             @Override
