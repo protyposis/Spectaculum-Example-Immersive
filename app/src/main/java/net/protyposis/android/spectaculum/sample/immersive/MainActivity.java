@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         // Register callbacks to initialize and release player
         mSpectaculumView.getInputHolder().addCallback(this);
 
+        // Set the playback control view duration to as long as possible so we do not have to
+        // handle view visibility toggling in this example
+        mPlaybackControlView.setShowDurationMs(Integer.MAX_VALUE);
+
         // Setup Spectaculum view for immersive content
         ImmersiveEffect immersiveEffect = new ImmersiveEffect(); // create effect instance
         mSpectaculumView.addEffect(immersiveEffect); // add effect to view
