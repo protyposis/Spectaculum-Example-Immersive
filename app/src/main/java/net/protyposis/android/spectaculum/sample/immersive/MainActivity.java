@@ -75,8 +75,26 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Release player to avoid writing frames to an invalid Spectaculum surface
+        releasePlayer();
+
+        // Pause Spectaculum rendering while it's inactive
+        mSpectaculumView.onPause();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Resume Spectaculum rendering
+        mSpectaculumView.onResume();
+    }
+
+    @Override
     public void surfaceCreated(InputSurfaceHolder holder) {
-        // When the input surface (i.e. the surface that the player needs to write video frames)
+        // When the input surface (i.e. the Spectaculum surface that the player needs to write video frames)
         // has been successfully created, we can initialize the player
         initializePlayer();
     }
