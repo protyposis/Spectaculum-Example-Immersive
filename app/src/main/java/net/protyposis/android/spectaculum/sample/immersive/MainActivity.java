@@ -33,9 +33,23 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
     private SpectaculumView mSpectaculumView;
     private PlaybackControlView mPlaybackControlView;
 
-    private String mVideoUri;
-
     private SimpleExoPlayer mExoPlayer;
+
+    private final VideoSource[] mVideoSources = {
+            // Orion360 Test Video: http://www.finwe.mobi/main/360-degree/orion360-test-images-videos/
+            // Url extracted from https://littlstar.com/videos/c9c27ffc
+            // Video format not supported on Nexus 9
+            new VideoSource("https://360.littlstar.com/production/79f8bd2f-d137-46ac-a60a-f9b22f77b57d/download.mp4", ImmersiveEffect.Mode.MONO),
+            // National Geographic Virtual Yellowstone: https://littlstar.com/videos/b541e0f4
+            new VideoSource("https://360.littlstar.com/production/83ef40fe-6e8e-45ed-86f8-871c89c3a60f/download.mp4", ImmersiveEffect.Mode.MONO),
+            // House Stereo Side-By-Side Demo
+            // This video has a really low resolution but should play back on all devices
+            new VideoSource("http://hosting.360heros.com/3D360Video/3D360/Demo3-House/3DH-Take1-Side-By-Side-1920x960.mp4", ImmersiveEffect.Mode.STEREO_SBS)
+    };
+
+    // SELECT THE VIDEO SOURCE HERE! (an index of the VideoSource array above)
+    private int mSelectedVideoSource = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
 
         // Setup Spectaculum view for immersive content
         ImmersiveEffect immersiveEffect = new ImmersiveEffect(); // create effect instance
+        immersiveEffect.setMode(mVideoSources[mSelectedVideoSource].immersiveMode); // Set VR the mode for selected video source
         mSpectaculumView.addEffect(immersiveEffect); // add effect to view
         mSpectaculumView.selectEffect(0); // activate effect
 
@@ -62,17 +77,6 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         ImmersiveTouchNavigation immersiveTouchNavigation = new ImmersiveTouchNavigation(mSpectaculumView);
         immersiveTouchNavigation.attachTo(immersiveEffect);
         immersiveTouchNavigation.activate(); // enable touch navigation
-
-        // Orion360 Test Video: http://www.finwe.mobi/main/360-degree/orion360-test-images-videos/
-        // Url extracted from https://littlstar.com/videos/c9c27ffc
-        mVideoUri = "https://360.littlstar.com/production/79f8bd2f-d137-46ac-a60a-f9b22f77b57d/download.mp4";
-
-        // National Geographic Virtual Yellowstone: https://littlstar.com/videos/b541e0f4
-        //mVideoUri = "https://360.littlstar.com/production/83ef40fe-6e8e-45ed-86f8-871c89c3a60f/download.mp4";
-
-        // House Stereo Side-By-Side Demo
-        //mVideoUri = "http://hosting.360heros.com/3D360Video/3D360/Demo3-House/3DH-Take1-Side-By-Side-1920x960.mp4";
-        //immersiveEffect.setMode(ImmersiveEffect.Mode.STEREO_SBS);
     }
 
     @Override
@@ -174,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         // Produces Extractor instances for parsing the media data.
         ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
         // This is the MediaSource representing the media to be played.
-        MediaSource videoSource = new ExtractorMediaSource(Uri.parse(mVideoUri),
+        MediaSource videoSource = new ExtractorMediaSource(Uri.parse(mVideoSources[mSelectedVideoSource].url),
                 dataSourceFactory, extractorsFactory, null, null);
         // Prepare the player with the source.
         player.prepare(videoSource, true);
@@ -197,6 +201,17 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         if(mExoPlayer != null) {
             mExoPlayer.release();
             mExoPlayer = null;
+        }
+    }
+
+    private class VideoSource {
+
+        private String url;
+        private ImmersiveEffect.Mode immersiveMode;
+
+        public VideoSource(String url, ImmersiveEffect.Mode immersiveMode) {
+            this.url = url;
+            this.immersiveMode = immersiveMode;
         }
     }
 }
