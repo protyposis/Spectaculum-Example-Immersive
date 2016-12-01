@@ -28,6 +28,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:text="@string/loading"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAlignment="center"
         android:textColor="@android:color/white" />
 
 </RelativeLayout>

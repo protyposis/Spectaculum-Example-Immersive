@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Spectaculum Immersive Sample</string>
     <string name="loading">Loading video...</string>
+    <string name="loading_hint_error">Loading video already takes a while. Make sure you are connected to the internet, check logcat for video/exoplayer/codec-related errors and/or try another video (see MainActivity#onCreate() for predefined videos).</string>
     <string name="drag">Drag video to look around!</string>
 </resources>

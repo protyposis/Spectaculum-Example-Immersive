@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -179,6 +180,14 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         player.prepare(videoSource, true);
 
         mExoPlayer = player;
+
+        // Display a hint to check for errors in case the video doesn't render
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ((TextView)findViewById(R.id.loadingindicator)).setText(R.string.loading_hint_error);
+            }
+        }, 10000);
     }
 
     /**
