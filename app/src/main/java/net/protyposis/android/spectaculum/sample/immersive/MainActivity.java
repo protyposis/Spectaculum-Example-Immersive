@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         ImmersiveEffect immersiveEffect = new ImmersiveEffect(); // create effect instance
         immersiveEffect.setMode(mVideoSources[mSelectedVideoSource].immersiveMode); // Set VR the mode for selected video source
         mSpectaculumView.addEffect(immersiveEffect); // add effect to view
-        mSpectaculumView.selectEffect(0); // activate effect
+        mSpectaculumView.selectEffect(0); // activate effect (move call to surfaceCreated to avoid startup error "E/ShaderProgram: Error linking program")
 
         // Setup Spectaculum immersive viewport touch navigation
         ImmersiveTouchNavigation immersiveTouchNavigation = new ImmersiveTouchNavigation(mSpectaculumView);
