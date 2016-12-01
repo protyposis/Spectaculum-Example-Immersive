@@ -26,6 +26,7 @@ import com.google.android.exoplayer2.util.Util;
 import net.protyposis.android.spectaculum.InputSurfaceHolder;
 import net.protyposis.android.spectaculum.SpectaculumView;
 import net.protyposis.android.spectaculum.effects.ImmersiveEffect;
+import net.protyposis.android.spectaculum.effects.ImmersiveSensorNavigation;
 import net.protyposis.android.spectaculum.effects.ImmersiveTouchNavigation;
 
 public class MainActivity extends AppCompatActivity implements InputSurfaceHolder.Callback {
@@ -77,6 +78,11 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         ImmersiveTouchNavigation immersiveTouchNavigation = new ImmersiveTouchNavigation(mSpectaculumView);
         immersiveTouchNavigation.attachTo(immersiveEffect);
         immersiveTouchNavigation.activate(); // enable touch navigation
+
+        // Setup Spectaculum immersive viewport sensor navigation (highly experimental! does not work well together with touch navigation!)
+        //ImmersiveSensorNavigation immersiveSensorNavigation = new ImmersiveSensorNavigation(this);
+        //immersiveSensorNavigation.attachTo(immersiveEffect);
+        //immersiveSensorNavigation.activate();
     }
 
     @Override
