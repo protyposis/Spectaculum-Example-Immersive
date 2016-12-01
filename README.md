@@ -14,7 +14,7 @@ change `MainActivity#mSelectedVideoSource` to `0`.
 Troubleshooting
 ---------------
 
-=== Logcat error "E/ShaderProgram: Error linking program"
+### Logcat error "E/ShaderProgram: Error linking program"
 
 All of the Immersive effect setup is done in `onCreate` for the sake of simplicity in this example.
 On some devices (e.g. Nexus 9), the OpenGL context does not yet exist at the time when the effect is activated.
