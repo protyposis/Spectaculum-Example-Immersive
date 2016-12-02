@@ -21,7 +21,7 @@ This is not really a problem because the effect gets reinitialized later once th
 You can get rid of the error by activating the effect at a later time e.g. in `onSurfaceCreated` where
 the GL surface is guaranteed to be ready, or when the video is loaded.
 
-This error happened in earlier version of this example app where `selectEffect` was called from `onCreate`.
+This error happened in earlier versions of this example app where `selectEffect` was called from `onCreate`.
 The call was moved to `onSurfaceCreated` in commit 95705cc to fix this error.
 
 License
