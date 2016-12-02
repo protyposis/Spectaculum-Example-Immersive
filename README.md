@@ -16,11 +16,13 @@ Troubleshooting
 
 ### Logcat error "E/ShaderProgram: Error linking program"
 
-All of the Immersive effect setup is done in `onCreate` for the sake of simplicity in this example.
-On some devices (e.g. Nexus 9), the OpenGL context does not yet exist at the time when the effect is activated.
-This is not really a problem because the effect gets reinitialized once the video is loaded, and works as expected.
-Still, you can get rid of the error by activating the effect (`mSpectaculumView.selectEffect(0)`) at a later time.
-A good place is `onSurfaceCreated` because there the GL context is guaranteed to be ready, or somewhere later when the video is loaded.
+Happens when the effect is activated (`mSpectaculumView.selectEffect(0)`) before the OpenGL surface is ready.
+This is not really a problem because the effect gets reinitialized later once the surface is ready, and works as expected.
+You can get rid of the error by activating the effect at a later time e.g. in `onSurfaceCreated` where
+the GL surface is guaranteed to be ready, or when the video is loaded.
+
+This error happened in earlier version of this example app where `selectEffect` was called from `onCreate`.
+The call was moved to `onSurfaceCreated` in commit 95705cc to fix this error.
 
 License
 -------
