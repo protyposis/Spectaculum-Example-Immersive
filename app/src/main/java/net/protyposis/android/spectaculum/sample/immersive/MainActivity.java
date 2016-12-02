@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         ImmersiveEffect immersiveEffect = new ImmersiveEffect(); // create effect instance
         immersiveEffect.setMode(mVideoSources[mSelectedVideoSource].immersiveMode); // Set VR the mode for selected video source
         mSpectaculumView.addEffect(immersiveEffect); // add effect to view
-        mSpectaculumView.selectEffect(0); // activate effect (move call to surfaceCreated to avoid startup error "E/ShaderProgram: Error linking program")
 
         // Setup Spectaculum immersive viewport touch navigation
         ImmersiveTouchNavigation immersiveTouchNavigation = new ImmersiveTouchNavigation(mSpectaculumView);
@@ -106,8 +105,9 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
     @Override
     public void surfaceCreated(InputSurfaceHolder holder) {
         // When the input surface (i.e. the Spectaculum surface that the player needs to write video frames)
-        // has been successfully created, we can initialize the player
+        // has been successfully created, we can initialize the player and activate the shader effect
         initializePlayer();
+        mSpectaculumView.selectEffect(0); // activate effect
     }
 
     @Override
