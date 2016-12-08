@@ -24,6 +24,17 @@ the GL surface is guaranteed to be ready, or when the video is loaded.
 This error happened in earlier versions of this example app where `selectEffect` was called from `onCreate`.
 The call was moved to `onSurfaceCreated` in commit 95705cc to fix this error.
 
+
+### EffectException: java.util.ConcurrentModificationException
+
+This exception comes from a concurrent modification of the list of parameters that the shader effect manages internally.
+This list is modified during initialization of the effect, and when a viewport navigation method (e.g. viewport touch navigation) is attached.
+Initialization happens when selecting the effect for the first time (with `selectEffect(index)`),
+or when it is automatically reinitialized because the surface changes (e.g. surface size change when video rendering starts).
+
+To avoid a collision of these events, it is best to not select the effect until the surface is ready (`onSurfaceCreated`).
+
+
 License
 -------
 
