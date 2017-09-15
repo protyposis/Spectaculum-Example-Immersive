@@ -25,9 +25,11 @@ import com.google.android.exoplayer2.util.Util;
 
 import net.protyposis.android.spectaculum.InputSurfaceHolder;
 import net.protyposis.android.spectaculum.SpectaculumView;
+import net.protyposis.android.spectaculum.effects.Effect;
 import net.protyposis.android.spectaculum.effects.ImmersiveEffect;
 import net.protyposis.android.spectaculum.effects.ImmersiveSensorNavigation;
 import net.protyposis.android.spectaculum.effects.ImmersiveTouchNavigation;
+import net.protyposis.android.spectaculum.effects.Parameter;
 
 public class MainActivity extends AppCompatActivity implements InputSurfaceHolder.Callback {
 
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         mPlaybackControlView.setShowDurationMs(Integer.MAX_VALUE);
 
         // Setup Spectaculum view for immersive content
-        ImmersiveEffect immersiveEffect = new ImmersiveEffect(); // create effect instance
+        final ImmersiveEffect immersiveEffect = new ImmersiveEffect(); // create effect instance
         immersiveEffect.setMode(mVideoSources[mSelectedVideoSource].immersiveMode); // Set VR the mode for selected video source
         mSpectaculumView.addEffect(immersiveEffect); // add effect to view
 
@@ -82,6 +84,27 @@ public class MainActivity extends AppCompatActivity implements InputSurfaceHolde
         //ImmersiveSensorNavigation immersiveSensorNavigation = new ImmersiveSensorNavigation(this);
         //immersiveSensorNavigation.attachTo(immersiveEffect);
         //immersiveSensorNavigation.activate();
+
+        // Listen to changes of the rotation matrix, e.g. to implement immersive audio (e.g. Ambisonics)
+        final float[] rotationMatrix = new float[16];
+        immersiveEffect.addListener(new Effect.Listener() {
+            @Override
+            public void onEffectChanged(Effect effect) {
+                immersiveEffect.getRotationMatrix(rotationMatrix);
+                // Now you can update whichever dependencies need the rotation data
+                // Attention: This listener is not called on the main thread, you need a handler
+                // to update components (e.g. UI elements) on the main thread! Alternatively, you
+                // can poll getRotationMatrix from the main thread without this listener.
+            }
+
+            @Override
+            public void onParameterAdded(Effect effect, Parameter parameter) {
+            }
+
+            @Override
+            public void onParameterRemoved(Effect effect, Parameter parameter) {
+            }
+        });
     }
 
     @Override
